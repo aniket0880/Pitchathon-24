@@ -7,7 +7,7 @@ import Footer from './components/Footer'; // Import your Footer component
 import GridContainer from './components/GridContainer'; // Import your GridContainer component
 import Collab from './components/Collab'; // Import your Collab component
 import Support from './components/Support'; // Import your Support component
-import Mentorship from './components/Mentorship'; // Import your Mentorship component
+import MentorshipPage from './components/MentorshipPage';
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/collab" element={<Collab />} /> {/* Route for Collab page */}
             <Route path="/support" element={<Support />} /> {/* Route for Support page */}
-            <Route path="/mentorship" element={<Mentorship />} /> {/* Route for Mentorship page */}
+            <Route path="/mentorship" element={<MentorshipPage />} /> {/* Route for Mentorship page */}
           </Routes>
         </main>
         
