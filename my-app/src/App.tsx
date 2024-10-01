@@ -1,28 +1,29 @@
-// App.tsx
-import React from 'react';
+// App.jsx
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import AboutUs from './components/AboutUs';
-import Footer from './components/Footer';
-import GridContainer from './components/GridContainer'; // Import the GridContainer
-import './App.css';
-import MentorshipPage from './components/MentorshipPage';
+import './App.css'; // Import your main CSS file
+import Navbar from './components/Navbar'; // Import your Navbar component
+import AboutUs from './components/AboutUs'; // Import your About component
+import Footer from './components/Footer'; // Import your Footer component
+import GridContainer from './components/GridContainer'; // Import your GridContainer component
+import Collab from './components/Collab'; // Import your Collab component
+import Support from './components/Support'; // Import your Support component
+import Mentorship from './components/Mentorship'; // Import your Mentorship component
 
 const App = () => {
   return (
     <Router>
-      <div className="w-full min-h-screen flex flex-col">
-        {/* Ensure full-width for Navbar */}
+      <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="w-full flex-grow">
+        <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<h1 className="text-center">Welcome to My Website!</h1>} />
+            <Route path="/" element={<GridContainer />} />
             <Route path="/about" element={<AboutUs />} />
-            {/* You can add more routes here */}
+            <Route path="/collab" element={<Collab />} /> {/* Route for Collab page */}
+            <Route path="/support" element={<Support />} /> {/* Route for Support page */}
+            <Route path="/mentorship" element={<Mentorship />} /> {/* Route for Mentorship page */}
           </Routes>
         </main>
-        <GridContainer /> {/* Place GridContainer here directly */}
-        {/* Ensure full-width for Footer */}
+        
         <Footer />
       </div>
       <MentorshipPage/>
