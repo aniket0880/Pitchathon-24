@@ -7,7 +7,9 @@ import Footer from './components/Footer'; // Import your Footer component
 import GridContainer from './components/GridContainer'; // Import your GridContainer component
 import Collab from './components/Collab'; // Import your Collab component
 import Support from './components/Support'; // Import your Support component
-import MentorshipPage from './components/MentorshipPage';
+import MentorshipPage from './components/MentorshipPage'; // Import your Mentorship component
+import {db} from './config/firebase';
+
 
 const App = () => {
   return (
