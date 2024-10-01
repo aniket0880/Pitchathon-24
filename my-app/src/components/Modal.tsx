@@ -6,27 +6,26 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   content: string;
-  imageUrl?: string; // Optional image URL prop
+  imageUrl?: string | null;
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, imageUrl }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-lg p-6 shadow-lg max-w-4xl w-full">
-        {imageUrl && ( // Conditionally render the image if provided
-          <img
-            src={imageUrl}
-            alt={title}
-            className="w-full h-full rounded-lg mb-4" // Image styling
-          />
-        )}
-        <h2 className="text-2xl font-bold mb-4">{title}</h2>
-        <p>{content}</p>
-        <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded" onClick={onClose}>
-          Collab With Us
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-[600px] transform transition-transform duration-300 slide-in">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+        >
+          &times; {/* Close button */}
         </button>
+        {imageUrl && (
+          <img src={imageUrl} alt={title} className="w-full h-64 object-cover rounded mb-4" />
+        )}
+        <h2 className="text-2xl font-bold mb-2">{title}</h2>
+        <p className="text-lg">{content}</p>
       </div>
     </div>
   );
