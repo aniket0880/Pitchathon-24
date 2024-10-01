@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import GridContainer from './components/GridContainer'; // Import the GridContainer
 import './App.css'
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import MentorshipPage from './components/MentorshipPage';
 
 
 const App = () => {
