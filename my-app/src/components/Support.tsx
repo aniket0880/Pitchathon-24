@@ -1,31 +1,53 @@
 // components/Support.tsx
 import React, { useState } from 'react';
+import { db } from '../config/firebase.ts'; // Adjust the path as necessary
+import { collection, addDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const Support: React.FC = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState<File | null>(null);
-  const [image, setImage] = useState<File | null>(null); // For image uploads
+  const [image, setImage] = useState<File | null>(null);
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    if (title && description && file && image) {
-      setMessage('Project submitted successfully!');
-      // Reset form
-      setTitle('');
-      setDescription('');
-      setFile(null);
-      setImage(null);
-    } else {
-      setMessage('Please fill all the fields and upload both a file and an image.');
-    }
-  };
+    
+    if (title && description && image) {
+      try {
+        // Upload image to Firebase Storage
+        const storage = getStorage();
+        const storageRef = ref(storage, `images/${image.name}`);
+        
+        // Upload file
+        await uploadBytes(storageRef, image);
+        
+        // Get the download URL
+        const imageUrl = await getDownloadURL(storageRef);
+        
+        // Prepare project data
+        const projectData = {
+          title,
+          description,
+          imageUrl, // Store the URL in Firestore
+          createdAt: new Date(),
+        };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+        // Add project data to Firestore
+        const docRef = await addDoc(collection(db, 'projects'), projectData);
+        console.log('Document written with ID: ', docRef.id); // Log document ID
+
+        // Reset form
+        setTitle('');
+        setDescription('');
+        setImage(null);
+        setMessage('Project submitted successfully!');
+      } catch (error) {
+        console.error('Error adding document: ', error);
+        setMessage('There was an error submitting your project.');
+      }
+    } else {
+      setMessage('Please fill all the fields and upload an image.');
     }
   };
 
@@ -42,7 +64,7 @@ const Support: React.FC = () => {
         Share your innovative research and projects with our community. By uploading your work, you contribute to collaborative efforts that empower students and foster creativity.
       </p>
 
-      <h2 className="text-2xl font-semibold mb-4">Submit Your Research or Project</h2>
+      <h2 className="text-2xl font-semibold mb-4">Submit Your Project Image</h2>
       <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-lg shadow-md">
         <div className="mb-4">
           <label className="block text-lg font-medium mb-2" htmlFor="title">Project Title</label>
@@ -67,16 +89,6 @@ const Support: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-lg font-medium mb-2" htmlFor="file">Upload Your Research File</label>
-          <input
-            type="file"
-            id="file"
-            accept=".pdf,.doc,.docx"
-            onChange={handleFileChange}
-            className="w-full px-3 py-2 border rounded-md"
-          />
-        </div>
-        <div className="mb-4">
           <label className="block text-lg font-medium mb-2" htmlFor="image">Upload Project Image</label>
           <input
             type="file"
@@ -84,6 +96,7 @@ const Support: React.FC = () => {
             accept="image/*"
             onChange={handleImageChange}
             className="w-full px-3 py-2 border rounded-md"
+            required
           />
         </div>
         <button
