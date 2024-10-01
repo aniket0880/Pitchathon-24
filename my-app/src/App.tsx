@@ -5,6 +5,7 @@ import AboutUs from './components/AboutUs';
 import Footer from './components/Footer';
 import GridContainer from './components/GridContainer'; // Import the GridContainer
 import './App.css';
+import NewPage from './components/NewPage';
 
 const App = () => {
   return (
@@ -13,9 +14,11 @@ const App = () => {
         {/* Ensure full-width for Navbar */}
         <Navbar />
         <main className="w-full flex-grow">
+          
           <Routes>
-            <Route path="/" element={<h1 className="text-center">Welcome to My Website!</h1>} />
-            <Route path="/about" element={<AboutUs />} />
+            <Route path="/Home" element={<h1 className="text-center">Welcome to My Website!</h1>} />
+            <Route path="/Home/about" element={<AboutUs />} />
+            <Route path="/new" element={<NewPage/>} />
             {/* You can add more routes here */}
           </Routes>
         </main>

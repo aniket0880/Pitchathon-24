@@ -1,5 +1,6 @@
 // components/GridContainer.tsx
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import Card from './Card';
 
 const GridContainer: React.FC = () => {
@@ -10,24 +11,31 @@ const GridContainer: React.FC = () => {
         <Card
           title="Collab"
           description="Description for project 1. Get involved and support this initiative."
-          imageUrl="\images\collab-image.jpeg"
+          imageUrl="/images/collab-image.jpeg"
           buttonText="Collab Now"
           onButtonClick={() => console.log('Project 1 button clicked!')}
         />
         <Card
           title="idk"
           description="Description for project 2. Join us in making a difference."
-          imageUrl="https://source.unsplash.com/random/300x200?project2"
+          imageUrl="/images/support-image1.jpeg"
           buttonText="Support Now"
           onButtonClick={() => console.log('Project 2 button clicked!')}
         />
         <Card
           title="Mentorship"
           description="Description for project 3. Your contribution matters."
-          imageUrl="images\mentorship-image.jpeg"
+          imageUrl="/images/mentorship-image.jpeg"
           buttonText="Get Mentorship"
-          onButtonClick={() => console.log('Project 3 button clicked!')}
+          onButtonClick={() => <Link to="/new">New page</Link>}
         />
+      </div>
+
+      {/* Add Links for Navigation */}
+      <div className="flex justify-center mt-6">
+        <Link to="/new" className="bg-blue-500 text-white py-2 px-4 rounded">
+          Go to New Page
+        </Link>
       </div>
     </div>
   );
