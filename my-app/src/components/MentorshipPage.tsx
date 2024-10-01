@@ -7,42 +7,66 @@ interface Mentor {
 }
 
 const mentorshipData: Record<string, Mentor[]> = {
-  Health: [
+  Technology: [
     {
-      name: "Dr. Sarah Johnson",
-      expertise: "Nutritionist",
-      bio: "Sarah has over 10 years of experience helping people with their diets."
+      name: "Alex Johnson",
+      expertise: "Software Engineer",
+      bio: "Alex has over 8 years of experience in full-stack development.",
     },
     {
-      name: "Dr. John Doe",
-      expertise: "Physical Therapist",
-      bio: "John is a certified physical therapist specializing in rehabilitation."
-    }
+      name: "Monica Lee",
+      expertise: "Data Scientist",
+      bio: "Monica specializes in machine learning and AI solutions.",
+    },
   ],
-  Fitness: [
+  HealthcareMedTech: [
     {
-      name: "Mike Anderson",
-      expertise: "Personal Trainer",
-      bio: "Mike has trained hundreds of clients to achieve their fitness goals."
+      name: "Dr. James Carter",
+      expertise: "Biomedical Engineer",
+      bio: "Dr. Carter designs medical devices and software for patient care.",
     },
     {
-      name: "Lisa Thompson",
-      expertise: "Yoga Instructor",
-      bio: "Lisa is a registered yoga instructor with a focus on mental well-being."
-    }
+      name: "Dr. Emily Wong",
+      expertise: "Health Informatics Specialist",
+      bio: "Emily has expertise in improving healthcare through technology.",
+    },
   ],
-  MentalHealth: [
+  CreativeArtsDesign: [
     {
-      name: "Jane Smith",
-      expertise: "Psychologist",
-      bio: "Jane specializes in cognitive behavioral therapy."
+      name: "Sophia Martinez",
+      expertise: "Graphic Designer",
+      bio: "Sophia has worked on multiple branding projects for startups and global brands.",
     },
     {
-      name: "Carl Davis",
-      expertise: "Counselor",
-      bio: "Carl has been a counselor for over 15 years, helping people with anxiety."
-    }
-  ]
+      name: "Michael Green",
+      expertise: "Video Production Specialist",
+      bio: "Michael has over 12 years of experience in film and video editing.",
+    },
+  ],
+  EducationEdTech: [
+    {
+      name: "Dr. Amanda Scott",
+      expertise: "EdTech Consultant",
+      bio: "Dr. Scott helps institutions integrate technology in classrooms.",
+    },
+    {
+      name: "Jacob Williams",
+      expertise: "Online Course Developer",
+      bio: "Jacob develops engaging online courses for various educational platforms.",
+    },
+  ],
+  AgricultureFoodTech: [
+    {
+      name: "Dr. Robert Clark",
+      expertise: "Agricultural Technologist",
+      bio: "Robert specializes in precision agriculture using modern tech solutions.",
+    },
+    {
+      name: "Laura Turner",
+      expertise: "Food Technologist",
+      bio: "Laura works on innovations in sustainable food production and preservation.",
+    },
+  ],
 };
 
 const MentorshipPage: React.FC = () => {
@@ -54,7 +78,9 @@ const MentorshipPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold text-center mb-8">Mentorship Program</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">
+        Mentorship Program
+      </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Category Selection */}
@@ -66,10 +92,20 @@ const MentorshipPage: React.FC = () => {
                 <button
                   onClick={() => handleCategoryClick(category)}
                   className={`w-full text-left px-4 py-2 rounded-lg mb-2 ${
-                    selectedCategory === category ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
+                    selectedCategory === category
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-200 text-gray-700'
                   }`}
+                  style={{ display: 'flex', alignItems: 'center', width: '100%', flexDirection: 'column' }} // Flex column to stack image and text
                 >
-                  {category}
+                  {/* Placeholder for Images */}
+                  {category === "Technology" && <img src="images/technology.jpeg" alt="Technology Icon" className="mb-2" />}
+                  {category === "HealthcareMedTech" && <img src="images/HealthcareMedTech.jpeg" alt="Healthcare Icon" className="mb-2" />}
+                  {category === "CreativeArtsDesign" && <img src="images/CreativeArtsDesign.jpeg" alt="Creative Arts Icon" className="mb-2" />}
+                  {category === "EducationEdTech" && <img src="images/EducationEd.jpeg" alt="Education Icon" className="mb-2" />}
+                  {category === "AgricultureFoodTech" && <img src="images/Agriculture.jpeg" alt="Agriculture Icon" className="mb-2" />}
+
+                  <span>{category}</span>
                 </button>
               </li>
             ))}
@@ -83,13 +119,15 @@ const MentorshipPage: React.FC = () => {
           </h2>
           {selectedCategory && (
             <div className="space-y-6">
-              {mentorshipData[selectedCategory as keyof typeof mentorshipData].map((mentor, index) => (
-                <div key={index} className="bg-gray-50 p-4 rounded-lg shadow-md">
-                  <h3 className="text-xl font-semibold">{mentor.name}</h3>
-                  <p className="text-gray-700">{mentor.expertise}</p>
-                  <p className="text-gray-600 mt-2">{mentor.bio}</p>
-                </div>
-              ))}
+              {mentorshipData[selectedCategory as keyof typeof mentorshipData].map(
+                (mentor, index) => (
+                  <div key={index} className="bg-gray-50 p-4 rounded-lg shadow-md">
+                    <h3 className="text-xl font-semibold">{mentor.name}</h3>
+                    <p className="text-gray-700">{mentor.expertise}</p>
+                    <p className="text-gray-600 mt-2">{mentor.bio}</p>
+                  </div>
+                )
+              )}
             </div>
           )}
         </div>

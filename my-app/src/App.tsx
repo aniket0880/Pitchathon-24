@@ -6,6 +6,7 @@ import AboutUs from './components/AboutUs';
 import Footer from './components/Footer';
 import GridContainer from './components/GridContainer'; // Import the GridContainer
 import './App.css';
+import MentorshipPage from './components/MentorshipPage';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         {/* Ensure full-width for Footer */}
         <Footer />
       </div>
+      <MentorshipPage/>
     </Router>
   );
 };
