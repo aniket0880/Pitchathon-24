@@ -1,15 +1,14 @@
-import './App.css'
-import { ThemeProvider } from './components/provider/theme-provider'
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
-function App() {
-
+export default function App() {
   return (
-    <>
-    <ThemeProvider>
-      
-    </ThemeProvider>
-    </>
-  )
+    <header>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </header>
+  );
 }
-
-export default App
