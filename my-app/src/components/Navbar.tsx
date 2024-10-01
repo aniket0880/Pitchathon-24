@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
         <Link to="/" className="text-2xl font-bold text-blue-600">
           CrowdStudent
         </Link>
-        <div className="flex-grow" /> {/* This will push the right items to the end */}
+        <div className="flex-grow" />
         <div className="hidden md:flex items-center space-x-8">
           <Link 
             to="/" 
@@ -47,14 +47,55 @@ const Navbar: React.FC = () => {
             <UserButton />
           </SignedIn>
         </div>
+        {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button className="text-gray-700 focus:outline-none">
+          <button 
+            className="text-gray-700 focus:outline-none" 
+            onClick={toggleDropdown}
+          >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
           </button>
         </div>
       </div>
+      {/* Mobile Dropdown Menu */}
+      {isDropdownOpen && (
+        <div className="md:hidden bg-white shadow-md">
+          <Link 
+            to="/" 
+            className="block text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-4 py-2"
+            onClick={() => setIsDropdownOpen(false)} // Close dropdown on click
+          >
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className="block text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-4 py-2"
+            onClick={() => setIsDropdownOpen(false)} // Close dropdown on click
+          >
+            About Us
+          </Link>
+          <Link 
+            to="/contact" 
+            className="block text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-4 py-2"
+            onClick={() => setIsDropdownOpen(false)} // Close dropdown on click
+          >
+            Contact
+          </Link>
+          <SignedOut>
+            <SignInButton 
+              className="block text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-4 py-2"
+              onClick={() => setIsDropdownOpen(false)} // Close dropdown on click
+            >
+              Log In
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
+      )}
     </nav>
   );
 };
