@@ -8,6 +8,8 @@ import GridContainer from './components/GridContainer'; // Import your GridConta
 import Collab from './components/Collab'; // Import your Collab component
 import Support from './components/Support'; // Import your Support component
 import Mentorship from './components/Mentorship'; // Import your Mentorship component
+import {db} from './config/firebase';
+
 
 const App = () => {
   return (
