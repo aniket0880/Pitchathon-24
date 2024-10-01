@@ -6,15 +6,19 @@ import AboutUs from './components/AboutUs'; // Import your About component
 import Footer from './components/Footer'; // Import your Footer component
 import GridContainer from './components/GridContainer'; // Import your GridContainer component
 import Collab from './components/Collab'; // Import your Collab component
-import Support from './components/Support'; // Import your Support component
-import Mentorship from './components/Mentorship'; // Import your Mentorship component
+import Support from './components/Upload.tsx'; // Import your Support component
+import Mentorship from './components/Mentorship';
 
 const App = () => {
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow w-full mx-0">
+          {/* Add HeroSection at the top of the main content */}
+          
+          
+          {/* Routes to different pages */}
           <Routes>
             <Route path="/" element={<GridContainer />} />
             <Route path="/about" element={<AboutUs />} />
