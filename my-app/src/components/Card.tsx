@@ -1,30 +1,26 @@
 // components/Card.tsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface CardProps {
   title: string;
   description: string;
   imageUrl: string;
   buttonText: string;
-  onButtonClick: () => void;
+  link: string; // Add link prop for navigation
 }
 
-const Card: React.FC<CardProps> = ({ title, description, imageUrl, buttonText, onButtonClick }) => {
+const Card: React.FC<CardProps> = ({ title, description, imageUrl, buttonText, link }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      {/* Heading */}
-      <h2 className="text-xl font-bold p-4">{title}</h2>
-      {/* Image */}
-      <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
-      {/* Description */}
-      <p className="p-4 text-gray-700">{description}</p>
-      {/* Button */}
-      <button 
-        className="bg-blue-600 text-white py-2 rounded mb-4 mx-4"
-        onClick={onButtonClick}
-      >
-        {buttonText}
-      </button>
+    <div className="border rounded-lg overflow-hidden shadow-lg p-4">
+      <img src={imageUrl} alt={title} className="w-full h-48 object-cover mb-4" />
+      <h2 className="text-xl font-bold mb-2">{title}</h2>
+      <p className="text-gray-700 mb-4">{description}</p>
+      <Link to={link}> {/* Wrap button in Link for navigation */}
+        <button className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+          {buttonText}
+        </button>
+      </Link>
     </div>
   );
 };
