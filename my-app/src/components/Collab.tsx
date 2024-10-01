@@ -54,7 +54,7 @@ const Collab: React.FC = () => {
         Welcome to our Collaboration page! We are excited to work with individuals and organizations who share our vision of making a positive impact in our community.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"> {/* Adjust gap here for space between cards */}
         {collaborations.map((collab) => (
           <div
             key={collab.id}
@@ -79,8 +79,9 @@ const Collab: React.FC = () => {
         content={modalContent?.description || ''}
         imageUrl={modalImage} // Pass the image URL to the Modal
       />
-      
-      <h2 className="text-2xl font-semibold mb-2">Why Collaborate With Us?</h2>
+
+      {/* Added margin-top to separate sections */}
+      <h2 className="text-2xl mt-20 font-semibold mb-2">Why Collaborate With Us?</h2>
       <p className="mb-4">
         Collaborating with us provides an opportunity to leverage your skills and resources for meaningful projects. Together, we can create innovative solutions and drive change.
       </p>
