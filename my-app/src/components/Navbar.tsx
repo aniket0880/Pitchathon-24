@@ -1,5 +1,7 @@
+// components/Navbar.tsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -10,29 +12,40 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
-      <div className="flex justify-between items-center px-6 py-4">
+      <div className="w-full flex justify-between items-center px-6 py-4">
         <Link to="/" className="text-2xl font-bold text-blue-600">
           CrowdStudent
         </Link>
-        <div className="hidden md:flex items-center space-x-6">
-          <Link to="/" className="text-gray-700 hover:text-blue-600">Home</Link>
-          <div className="relative">
-            <button
-              onClick={toggleDropdown}
-              className="text-gray-700 hover:text-blue-600"
+        <div className="flex-grow" /> {/* This will push the right items to the end */}
+        <div className="hidden md:flex items-center space-x-8">
+          <Link 
+            to="/" 
+            className="text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-2 py-1 rounded"
+          >
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className="text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-2 py-1 rounded"
+          >
+            About Us
+          </Link>
+          <Link 
+            to="/contact" 
+            className="text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-2 py-1 rounded"
+          >
+            Contact
+          </Link>
+          <SignedOut>
+            <SignInButton 
+              className="text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-2 py-1 rounded"
             >
-              Services
-            </button>
-            {isDropdownOpen && (
-              <div className="bg-white shadow-md rounded-md absolute left-0 mt-2 w-40">
-                <Link to="/service1" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Service 1</Link>
-                <Link to="/service2" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Service 2</Link>
-                <Link to="/service3" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Service 3</Link>
-              </div>
-            )}
-          </div>
-          <Link to="/about" className="text-gray-700 hover:text-blue-600">About Us</Link>
-          <Link to="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
+              Log In
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
         <div className="md:hidden">
           <button className="text-gray-700 focus:outline-none">

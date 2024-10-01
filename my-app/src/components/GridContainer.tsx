@@ -10,8 +10,8 @@ const GridContainer: React.FC = () => {
         <Card
           title="Collab"
           description="Description for project 1. Get involved and support this initiative."
-          imageUrl="https://source.unsplash.com/random/300x200?project1"
-          buttonText="Support Now"
+          imageUrl="\images\collab-image.jpeg"
+          buttonText="Collab Now"
           onButtonClick={() => console.log('Project 1 button clicked!')}
         />
         <Card
@@ -24,8 +24,8 @@ const GridContainer: React.FC = () => {
         <Card
           title="Mentorship"
           description="Description for project 3. Your contribution matters."
-          imageUrl="https://source.unsplash.com/random/300x200?project3"
-          buttonText="Support Now"
+          imageUrl="images\mentorship-image.jpeg"
+          buttonText="Get Mentorship"
           onButtonClick={() => console.log('Project 3 button clicked!')}
         />
       </div>
