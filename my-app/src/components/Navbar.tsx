@@ -1,4 +1,3 @@
-// components/Navbar.tsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
@@ -12,10 +11,11 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
-      <div className="w-full flex justify-between items-center px-6 py-4">
-        <Link to="/" className="text-2xl font-bold text-blue-600">
-          CrowdStudent
+      <div className="flex justify-between items-center py-4 mx-auto max-w-full">
+        <Link to="/" className="text-2xl font-bold text-blue-600 ml-8">
+          IGNITION
         </Link>
+        <img src="images/logo.png" alt="Logo" className="ml-2 h-24" />
         <div className="flex-grow" />
         <div className="hidden md:flex items-center space-x-8">
           <Link 
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
       </div>
       {/* Mobile Dropdown Menu */}
       {isDropdownOpen && (
-        <div className="md:hidden bg-white shadow-md">
+        <div className="md:hidden bg-white shadow-md w-full">
           <Link 
             to="/" 
             className="block text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-4 py-2"
@@ -85,7 +85,7 @@ const Navbar: React.FC = () => {
           </Link>
           <SignedOut>
             <SignInButton 
-              className="block text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-4 py-2"
+              className="block text-gray-700 font-bold text-2xl transition duration-300 hover:shadow-md hover:bg-gray-100 hover:text-black px-4 py-2" 
               onClick={() => setIsDropdownOpen(false)} // Close dropdown on click
             >
               Log In
