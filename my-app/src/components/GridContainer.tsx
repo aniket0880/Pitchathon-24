@@ -5,39 +5,35 @@ import Card from './Card';
 
 const GridContainer: React.FC = () => {
   return (
+    <>
+    <h1 className='text-4xl underline'>Welcome, to our website!</h1>
     <div className="max-w-screen-xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-center mb-6">OUR MVP</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <Card
           title="Collab"
           description="Description for project 1. Get involved and support this initiative."
-          imageUrl="/images/collab-image.jpeg"
+          imageUrl="images/collab-image.jpeg" // Make sure this path is correct
           buttonText="Collab Now"
-          onButtonClick={() => console.log('Project 1 button clicked!')}
+          buttonLink="/collab" // Ensure this points to the collab page
         />
         <Card
-          title="idk"
+          title="Upload"
           description="Description for project 2. Join us in making a difference."
-          imageUrl="/images/support-image1.jpeg"
-          buttonText="Support Now"
-          onButtonClick={() => console.log('Project 2 button clicked!')}
+          imageUrl="\images\upload-image.jpeg"
+          buttonText="Upload your work"
+          buttonLink="/support" // Ensure this points to the support page
         />
         <Card
           title="Mentorship"
           description="Description for project 3. Your contribution matters."
-          imageUrl="/images/mentorship-image.jpeg"
+          imageUrl="images/mentorship-image.jpeg" // Make sure this path is correct
           buttonText="Get Mentorship"
-          onButtonClick={() => <Link to="/new">New page</Link>}
+          buttonLink="/mentorship" // Ensure this points to the mentorship page
         />
       </div>
-
-      {/* Add Links for Navigation */}
-      <div className="flex justify-center mt-6">
-        <Link to="/new" className="bg-blue-500 text-white py-2 px-4 rounded">
-          Go to New Page
-        </Link>
-      </div>
     </div>
+    </>
   );
 };
 
